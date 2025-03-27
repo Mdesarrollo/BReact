@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { User, Mail, Lock } from "lucide-react";
 
 function Register() {
@@ -138,10 +139,13 @@ function Register() {
         </form>
 
         {/* Enlace para iniciar sesión */}
-        <div className="text-center mt-4">
-          <a href="#" className="text-blue-400 hover:underline text-sm">
-            ¿Ya tienes una cuenta? Inicia sesión
-          </a>
+        <div className="text-center mt-4 flex justify-center">
+        <Link
+              to="/login"
+              className=" text-white flex"
+          >
+            ¿Ya tienes una cuenta? Inicia sesion
+          </Link>
         </div>
       </div>
     </div>

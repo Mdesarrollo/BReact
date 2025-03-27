@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
+import Start  from './component/start';
 
 function App() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-2xl shadow-lg text-center">
+      {/* <div className="bg-white p-8 rounded-2xl shadow-lg text-center">
         <h1 className="text-2xl font-bold text-gray-700 mb-6">Bienvenido</h1>
         <p className="text-gray-500 mb-4">Elige una opción para continuar</p>
         <div className="flex gap-4">
@@ -20,7 +21,8 @@ function App() {
             Iniciar Sesión
           </Link>
         </div>
-      </div>
+      </div> */}
+      <Start/>
     </div>
   );
 }

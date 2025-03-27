@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Lock, Mail } from "lucide-react";
 function login() {
   const [email, setEmail] = useState("");
@@ -23,8 +24,7 @@ function login() {
         </h2>
         <form onSubmit={handleLogin} className="space-y-5">
           {/* Email */}
-          <div>
-            <label className="flex items-center text-gray-300 mb-1">
+          <label className="flex items-center text-gray-300 mb-1">
               <Mail className="mr-2 text-blue-400" />
               Correo Electrónico
             </label>
@@ -35,11 +35,9 @@ function login() {
               required
               className="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:ring-2 focus:ring-blue-400 outline-none text-white"
             />
-          </div>
 
           {/* Password */}
-          <div>
-            <label className="flex items-center text-gray-300 mb-1">
+          <label className="flex items-center text-gray-300 mb-1">
               <Lock className="mr-2 text-blue-400" />
               Contraseña
             </label>
@@ -50,7 +48,6 @@ function login() {
               required
               className="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:ring-2 focus:ring-blue-400 outline-none text-white"
             />
-          </div>
 
           {/* Botón de Login */}
           <button
@@ -62,10 +59,19 @@ function login() {
         </form>
 
         {/* Enlace de recuperación */}
-        <div className="text-center mt-4">
-          <a href="#" className="text-blue-400 hover:underline text-sm">
-            ¿Olvidaste tu contraseña?
-          </a>
+        <div className="text-center mt-4 flex justify-center gap-5 ">
+          <Link
+              to="/register"
+              className=" text-white  "
+          >
+            ¿No tienes cuenta?
+          </Link>
+          <Link
+              to="/"
+              className=" text-white flex"
+          >
+            Volver a Inicio
+          </Link>
         </div>
       </div>
     </div>
