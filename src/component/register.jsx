@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { User, Mail, Lock } from "lucide-react";
 
 function Register() {
@@ -11,6 +11,13 @@ function Register() {
     termsAccepted: false,
   });
 
+  const navigate = useNavigate();
+  const usernameRef = useRef(null);
+
+  useEffect(() => {
+    usernameRef.current?.focus();
+  }, []);
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prevData) => ({
@@ -19,8 +26,22 @@ function Register() {
     }));
   };
 
+  const validatePassword = (password) => {
+    const regex = /^(?=.*[a-zA-Z])(?=.*\d)[A-Za-z\d]{6,}$/;
+    return regex.test(password);
+  };
+  
+
   const handleRegister = async (e) => {
     e.preventDefault();
+
+    if (!validatePassword(formData.password)) {
+      alert(
+        "La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial."
+      );
+      return;
+    }
+
     if (formData.password !== formData.confirmPassword) {
       alert("Las contraseñas no coinciden");
       return;
@@ -38,6 +59,16 @@ function Register() {
 
     const data = await response.json();
     console.log(data);
+
+    setFormData({
+      username: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      termsAccepted: false,
+    });
+
+    navigate("/");
   };
 
   return (
@@ -59,6 +90,7 @@ function Register() {
               value={formData.username}
               onChange={handleChange}
               required
+              ref={usernameRef}
               className="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:ring-2 focus:ring-blue-400 outline-none text-white"
             />
           </div>
@@ -140,11 +172,8 @@ function Register() {
 
         {/* Enlace para iniciar sesión */}
         <div className="text-center mt-4 flex justify-center">
-        <Link
-              to="/login"
-              className=" text-white flex"
-          >
-            ¿Ya tienes una cuenta? Inicia sesion
+          <Link to="/login" className=" text-white flex">
+            ¿Ya tienes una cuenta? Inicia sesión
           </Link>
         </div>
       </div>
@@ -152,4 +181,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default Register;

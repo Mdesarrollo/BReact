@@ -44,6 +44,13 @@ class User(BaseModel):
     email: str
     password: str
 
+# Obtener usuario por email
+@app.get("/users/{email}")
+def get_user(email: str):
+    user = users_collection.find_one({"email": email}, {"_id": 0})
+    if not user:
+        raise HTTPException(status_code=404, detail="Usuario no encontrado")
+    return user
 
 # Registrar usuario
 @app.post("/register")
@@ -95,3 +102,6 @@ def delete_user(email: str):
 @app.get("/")
 def read_root():
     return {"message": "API funcionando correctamente"}
+
+
+
