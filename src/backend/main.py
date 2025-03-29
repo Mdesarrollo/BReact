@@ -3,7 +3,6 @@ from pymongo import MongoClient
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from bson import ObjectId
-import os
 from dotenv import load_dotenv
 
 # Cargar variables de entorno
